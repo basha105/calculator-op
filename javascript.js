@@ -58,8 +58,7 @@ numbers.forEach((number) => {
             }
 
             if (!typeof b === 'undefined') {
-                myDisplay
-                
+
             }
             
 

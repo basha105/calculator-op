@@ -37,8 +37,8 @@ function operate(n1, n2, op) {
 let myDisplay = document.getElementById("display");
 myDisplay.textContent = "";
 
-let a;
-let b;
+let a = 'nothing';
+let b = 'nothing';
 let currentOperator;
 let lastEntryIsOperator = false;
 let result;
@@ -47,27 +47,35 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         if (button.classList.contains("num")) { // IF ITS A NUMBER
-            myDisplay.textContent = myDisplay.textContent + String(button.id);
+            if (lastEntryIsOperator) {
+                myDisplay.textContent = "" + button.id;
+
+                
+            }
+            else {
+                myDisplay.textContent = myDisplay.textContent + String(button.id);
+            }
             
 
-            
+            lastEntryIsOperator = false;
         }
 
-        else if (button.classList.contains("op")) { // IF ITS AN OP
+        else if (button.classList.contains("op")) { // IF ITS AN OPerator
             currentOperator = button.id;
-            if (typeof a === 'undefined') {
+            if (a == 'nothing') {
                 a = Number(myDisplay.textContent);
             }
-            else if (typeof b === 'undefined') {
+            else if (b == 'nothing') {
                 b = Number(myDisplay.textContent);
             }
 
             myDisplay.textContent = "";
-            if (typeof a !== 'undefined' && typeof b !== 'undefined') {
+            if (a != 'nothing' & b != 'nothing') {
                 result = operate(a, b, currentOperator);
                 myDisplay.textContent = String(result);
                 a = Number(result);
-                b = 'undefined';
+                b = 'nothing';
+                lastEntryIsOperator = true;
             }
 
 

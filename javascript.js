@@ -41,15 +41,20 @@ let a;
 let b;
 let currentOperator;
 let lastEntryIsOperator = false;
+let result;
 
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (button.classList.contains("num")) { // IF ITS A NUMBER
+            myDisplay.textContent = myDisplay.textContent + String(button.id);
+            
 
+            
+        }
 
-
-const numbers = document.querySelectorAll(".num");
-numbers.forEach((number) => {
-    number.addEventListener("click", () => {
-        if (lastEntryIsOperator) {
-
+        else if (button.classList.contains("op")) { // IF ITS AN OP
+            currentOperator = button.id;
             if (typeof a === 'undefined') {
                 a = Number(myDisplay.textContent);
             }
@@ -57,31 +62,17 @@ numbers.forEach((number) => {
                 b = Number(myDisplay.textContent);
             }
 
-            if (!typeof b === 'undefined') {
-
+            myDisplay.textContent = "";
+            if (typeof a !== 'undefined' && typeof b !== 'undefined') {
+                result = operate(a, b, currentOperator);
+                myDisplay.textContent = String(result);
+                a = Number(result);
+                b = 'undefined';
             }
-            
 
-            myDisplay.textContent = "" + String(number.id);
 
-            
 
         }
-        else {
-            myDisplay.textContent = myDisplay.textContent + String(number.id);
-            
-        }
-        lastEntryIsOperator = false;
+        
     });
 });
-
-
-const operators = document.querySelectorAll(".op");
-operators.forEach((operator) => {
-    operator.addEventListener("click", () => {
-        currentOperator = operator.id;
-        lastEntryIsOperator = true;
-    });
-});
-
-const equals = document.querySelector("")

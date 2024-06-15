@@ -39,7 +39,7 @@ myDisplay.textContent = "";
 
 let a = 'nothing';
 let b = 'nothing';
-let currentOperator;
+let currentOperator = 'none';
 let lastEntryIsOperator = false;
 let result;
 
@@ -48,9 +48,7 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
         if (button.classList.contains("num")) { // IF ITS A NUMBER
             if (lastEntryIsOperator) {
-                myDisplay.textContent = "" + button.id;
-
-                
+                myDisplay.textContent = "" + button.id;  
             }
             else {
                 myDisplay.textContent = myDisplay.textContent + String(button.id);
